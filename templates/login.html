@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Giriş Yap · SleepCoach.AI</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <style>
+    :root{
+      --primary:#6c63ff; --primary-2:#8d7bff; --ring:rgba(108,99,255,.35);
+      --muted:#6b7280; --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#1f2937}
+
+    /* Sayfa arka planı */
+    .page-bg{
+      position:fixed; inset:0; z-index:-1;
+      background-image: linear-gradient(135deg,#6c63ff, #9f8bff 40%, #c9baff);
+      background-size:cover; background-position:center; background-repeat:no-repeat;
+    }
+
+    /* NAVBAR */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background:rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .nav .inner{
+      max-width:1150px; margin:0 auto; padding:12px 20px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand{
+      display:inline-flex; align-items:center; gap:10px;
+      background:#fff; border:1px solid #eef; padding:10px 14px; border-radius:14px;
+      box-shadow:0 10px 30px rgba(10,16,34,.08);
+      font-weight:800; text-decoration:none; color:#111827;
+    }
+    .brand .dot{ color:var(--primary) }
+    .links{display:flex; gap:10px; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      height:40px; padding:0 14px; border-radius:12px; font-weight:600; border:0; cursor:pointer
+    }
+    .btn-outline{ background:transparent; color:#3b2fe0; border:1px solid rgba(59,47,224,.25) }
+    .btn-outline:hover{ background:rgba(59,47,224,.06) }
+    .btn-cta{ background:linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff;
+      box-shadow:0 8px 22px rgba(108,99,255,.25)
+    }
+
+    /* ORTA KISIM */
+    .shell{ min-height:calc(100vh - 64px); display:grid; place-items:center; padding:28px 16px }
+    .card{
+      width: min(480px, 92vw);
+      background: linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.78));
+      border:1px solid #e9ecff; border-radius:18px; padding:22px 22px 18px;
+      box-shadow: 0 12px 30px rgba(10,16,34,.12);
+      backdrop-filter: blur(6px);
+    }
+    h1{margin:0 0 6px; font-size:26px}
+    .muted{color:var(--muted); font-size:14px}
+
+    label{display:block; font-weight:600; margin:14px 0 6px}
+    .input{
+      width:100%; padding:12px 14px; border:1px solid #e5e7eb; border-radius:10px; font-size:15px;
+      background:#fff; outline:none; transition:.15s border,.15s box-shadow
+    }
+    .input:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 4px rgba(108,99,255,.12);
+    }
+
+    .row{display:flex; gap:10px; justify-content:space-between; align-items:center; margin-top:16px}
+    .left-links{display:flex; gap:12px; align-items:center}
+    .link{color:#3b2fe0; text-decoration:none; font-weight:600}
+    .link:hover{text-decoration:underline}
+
+    /* Şifre kutusu içinde göz ikonu */
+    .pass-wrap{ position:relative }
+    .toggle-pass{
+      position:absolute; right:10px; top:50%; transform:translateY(-50%);
+      background:transparent; border:0; cursor:pointer; font-size:16px; color:#6b7280;
+    }
+
+    /* Üst mesaj alanı */
+    .notice{
+      margin:0 0 10px; padding:10px 12px; border-radius:10px; font-size:14px
+    }
+    .notice.ok{ background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0 }
+    .notice.err{ background:#fef2f2; color:#991b1b; border:1px solid #fecaca }
+  </style>
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <nav class="nav" aria-label="Ana gezinme">
+    <div class="inner">
+      <a class="brand" href="/"><span>🌙</span> SleepCoach.<span class="dot">AI</span></a>
+      <div class="links">
+        <a class="btn btn-outline" href="/">Ana Sayfa</a>
+        <a class="btn btn-outline" href="/assistant/">Bilgi Asistanı</a>
+        <a class="btn btn-cta" href="/assessment">Değerlendirmeyi Başlat</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <section class="card" aria-labelledby="title">
+      <h1 id="title">Giriş Yap</h1>
+      <p class="muted">E-posta ve şifrenle devam et.</p>
+
+      <!-- mesaj alanı -->
+      <div id="notice" class="notice" style="display:none"></div>
+
+      <!-- Not: JS submit yakalıyor; backend'e form post etmiyoruz -->
+      <form id="loginForm" autocomplete="on">
+        <label for="email">E-posta</label>
+        <input id="email" name="email" type="email" class="input" required>
+
+        <label for="password">Şifre</label>
+        <div class="pass-wrap">
+          <input id="password" name="password" type="password" class="input" required>
+          <button class="toggle-pass" type="button" onclick="togglePass()">👁️</button>
+        </div>
+
+        <div class="row">
+          <div class="left-links">
+            <a class="link" href="/register">Kaydol</a>
+            <a class="link" href="/forgot">Şifremi Unuttum?</a>
+          </div>
+          <button class="btn btn-cta" type="submit">Giriş Yap</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+function togglePass(){
+  const el = document.getElementById('password');
+  el.type = (el.type === 'password') ? 'text' : 'password';
+}
+
+const notice = document.getElementById('notice');
+
+document.getElementById('loginForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+
+  // OAuth2PasswordRequestForm → form-encoded: username & password
+  const body = new URLSearchParams({ username: email, password });
+
+  const r = await fetch('/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body
+  });
+
+  if(!r.ok){
+    const err = await r.json().catch(()=>({detail:'Giriş başarısız'}));
+    notice.textContent = err.detail || 'Giriş başarısız';
+    notice.className = 'notice err'; notice.style.display = 'block';
+    return;
+  }
+
+  const data = await r.json(); // { access_token, token_type }
+  localStorage.setItem('sc_token', data.access_token);
+  // anasayfaya dön
+  window.location.href = '/';
+});
+</script>
+</body>
+</html>

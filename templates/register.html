@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kaydol · SleepCoach.AI</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <style>
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+    nav{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);
+        border-bottom:1px solid #eee}
+    nav .inner{max-width:1150px;margin:0 auto;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+    .brand{font-weight:800}.brand .dot{color:#6c63ff}
+
+    .wrap{max-width:460px;margin:8vh auto;padding:24px}
+    .card{background:#fff;border:1px solid #eef; border-radius:16px; padding:22px;
+          box-shadow:0 12px 28px rgba(10,16,34,.08)}
+    h1{font-size:24px;margin:0 0 14px}
+    label{display:block;font-weight:600;margin:12px 0 6px}
+    input{width:100%;padding:12px 14px;border:1px solid #e5e7eb;border-radius:10px;font-size:15px}
+    .row{display:flex;gap:10px;justify-content:space-between;margin-top:16px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;
+         padding:0 16px;border-radius:12px;font-weight:600;border:0;cursor:pointer}
+    .btn-cta{background:linear-gradient(135deg,#6c63ff,#8d7bff);color:#fff}
+    .muted{color:#6b7280;font-size:14px}
+    .err{color:#ef4444;margin-top:10px}
+    .ok{color:#16a34a;margin-top:10px}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="inner">
+      <a class="brand" href="/">SleepCoach.<span class="dot">AI</span></a>
+      <div>
+        <a class="btn" href="/login">Giriş Yap</a>
+        <a class="btn" href="/">Ana Sayfa</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="card">
+      <h1>Kaydol</h1>
+      <p class="muted">Hesap oluşturun.</p>
+
+      <form id="regForm">
+        <label for="full_name">Ad Soyad (opsiyonel)</label>
+        <input id="full_name" name="full_name" type="text" placeholder="Ad Soyad">
+
+        <label for="email">E-posta</label>
+        <input id="email" name="email" type="email" required placeholder="ornek@eposta.com">
+
+        <label for="password">Şifre</label>
+        <input id="password" name="password" type="password" minlength="6" required>
+
+        <div class="row">
+          <a class="btn" href="/login">Giriş Yap</a>
+          <button class="btn btn-cta" type="submit">Kaydol</button>
+        </div>
+        <div id="msg" class="muted"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('regForm');
+    const msg  = document.getElementById('msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.className = 'muted'; msg.textContent = 'Gönderiliyor...';
+
+      const payload = {
+        email: form.email.value.trim(),
+        password: form.password.value,
+        full_name: form.full_name.value.trim() || null
+      };
+
+      try {
+        const res = await fetch('/auth/register', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          msg.className = 'err';
+          msg.textContent = data.detail || 'Kayıt başarısız.';
+          return;
+        }
+
+        // Token'ı sakla ve panele geç
+        localStorage.setItem('sc_token', data.access_token);
+        msg.className = 'ok';
+        msg.textContent = 'Hesap oluşturuldu, yönlendiriliyorsunuz...';
+        setTimeout(()=>location.href='/dashboard', 500);
+
+      } catch (err) {
+        msg.className = 'err';
+        msg.textContent = 'Bağlantı hatası.';
+      }
+    });
+  </script>
+</body>
+</html>

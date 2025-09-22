@@ -1,0 +1,82 @@
+[
+  {
+    "doc_id": 0,
+    "path": "data\\rag\\adimlar_aktivite_ve_uyku.md",
+    "chunk": "Adımlar, Aktivite ve Uyku Özet: Günlük adım sayısı ve orta şiddette aktivite arttıkça uyku kalitesi genelde iyileşir. Hedefler - Seviyene göre 6.000–8.000+ adım/güne kademeli çık. - Yemeklerden sonra kısa yürüyüşler; uzun oturmaları kısa hareket molalarıyla böl. Notlar - Yatmadan hemen önce yoğun egzersizden kaçın; ≥3 saat kuralı. Kaynak Fiziksel aktivite epidemiyolojisi ve uyku çıktıları."
+  },
+  {
+    "doc_id": 1,
+    "path": "data\\rag\\alkol_ve_uyku.md",
+    "chunk": "Alkol ve Uyku Özet: Alkol uykuya dalmayı kolaylaştırabilir ama gecenin ikinci yarısında uykuyu böler, REM'i baskılar. Etkiler - Gece uyanmaları, canlı rüyalar, sık tuvalete kalkma. - Horlamayı artırır, uyku apnesini kötüleştirebilir. Öneriler - Yatmadan 3–4 saat önce alkol almamaya çalış. - Daha erken saatte ve ölçülü tüket; su iç. Kaynak notları Uyku mimarisi ve alkol etkileşimi üzerine özetler."
+  },
+  {
+    "doc_id": 2,
+    "path": "data\\rag\\cbti_kisa_rehber.md",
+    "chunk": "CBT-I (Uykusuzluk için BDT) — Kısa Rehber Özet: Uykusuzluğun birinci basamak tedavisi; davranış ve düşünce örüntülerini hedefler. Bileşenler - Uyarıcı kontrolü: Yatak=Uyku; uykun yoksa yataktan kalk. - Uyku kısıtlaması: Yatakta kalış, gerçek uyku süresiyle başlar ve kademeli genişletilir. - Bilişsel çalışma: “Uyursam yarın mahvolurum” gibi inançları yeniden çerçeveleme. - Hijyen: Destekleyici ama tek başına yetmez. Ne zaman yardım? >3 ay süren uykusuzluk, gündüz işlev kaybı → uzman desteği. Kaynak notları AASM/ACP kılavuzlarının hasta dostu özetleri."
+  },
+  {
+    "doc_id": 3,
+    "path": "data\\rag\\egzersiz_zamanlama.md",
+    "chunk": "Egzersiz Zamanlaması Özet: Düzenli hareket uyku kalitesini artırır; bazı kişilerde geç saat yoğun egzersiz uykuya dalmayı zorlaştırabilir. Öneriler - Haftada 150+ dk orta şiddetli aktivite hedefle. - Yoğun antrenmanı yatmadan ≥3 saat önce bitir. - Akşam hafif esneme/yoga çoğu kişide sorun yaratmaz. - Açık havada gündüz egzersizi + gün ışığı = ritim desteği. İpuçları - Geç saat çalıştıysan: süre/şiddeti azalt, esnetmeleri sakin tut. - Egzersiz sonrası duş + hafif atıştırmalık + ekranı kapat. Kaynak Egzersiz ve uyku ilişkisine dair derlemeler, ACSM kılavuzları."
+  },
+  {
+    "doc_id": 4,
+    "path": "data\\rag\\insomnia_genel_bakis.md",
+    "chunk": "Uykusuzluk (İnsomnia) — Genel Bakış Özet: Yeterli fırsata rağmen uykuya dalma/sürdürmede zorluk + gündüz etkilenme. Türler - Akut (günler-haftalar) vs kronik (>3 ay). - Çoğu zaman hiperuyanıklık ve düzensiz programla sürer. İlk basamak - CBT-I. İlaçlar ikinci basamak ve kısa süreli durumlar için uygun olabilir (hekim kararıyla). Kaynak ACP/AASM kılavuz özetleri."
+  },
+  {
+    "doc_id": 5,
+    "path": "data\\rag\\kafein_ve_uyku.md",
+    "chunk": "Kafein ve Uyku Özet: Kafein adenozin reseptörlerini bloke eder, uyku baskısını azaltır; etkisi 6–8+ saat sürebilir. Temel noktalar - Kesme saati: Yatmadan en az 6 saat önce (duyarlıysan daha erken). - Gizli kaynaklar: Çay, kola/enerji içecekleri, çikolata, bazı ağrı kesiciler. - Yüksek dozlar derin uykuyu azaltır, sabaha karşı uyanmaları artırabilir. Pratik geçiş - Öğleden sonra kafeinsiz tercih et; akşam bitki çayı. - Baş ağrısı olursa kademeli azalt (1–2 hafta). Kaynak notları Adenozin/kafein etkileşimi ve uyku kalitesi üzerine derlemeler."
+  },
+  {
+    "doc_id": 6,
+    "path": "data\\rag\\kisa_uyku_sekerleme.md",
+    "chunk": "Kısa Uyku (Şekerleme) Özet: Kısa ve erken saatlerde yapıldığında yararlı; uzun/geç şekerlemeler gece uykusunu bozabilir. İpuçları - 10–20 dk hedefle (power nap); daha uzunu uyku sarhoşluğu yapabilir. - 16:00’dan sonra şekerleme yapma. - Alarm kur; kalkınca kısa yürüyüş + ışık iyi gelir. Kaynak notları Gündüz uykululuğu ve performans literatürü."
+  },
+  {
+    "doc_id": 7,
+    "path": "data\\rag\\mavi_isik_ve_ekranlar.md",
+    "chunk": "Mavi Işık ve Ekranlar Özet: Akşam mavi ağırlıklı ışık melatonini baskılar, uykululuğu geciktirir ve biyolojik saati ileri kaydırabilir. Mekanizma (kısaca) Retinadaki ipRGC hücreleri 460–480 nm dalga boylarına duyarlıdır. Akşam parlak/mavi ışık sirkadiyen fazı geciktirebilir. Pratik öneriler - Yatmadan 60 dk önce ekranı bırak. Zorunluysa gece modu / sıcak ton + düşük parlaklık. - Ekran-göz mesafesini artır, ortam ışığını kıs. - Sabah ışığı (doğal gün ışığı) ritmi sabitler. Ne denesem? - Ekranı her hafta 15–30 dk daha erken bırak. - Gece kullanman gerekiyorsa: düşük parlaklık + gece modu + uzaktan kullanım. Kaynak notları Halk sağlığı özetleri (NIH) ve sirkadiyen ışık maruziyeti literatürü."
+  },
+  {
+    "doc_id": 8,
+    "path": "data\\rag\\nabiz_tansiyon_ve_uyku.md",
+    "chunk": "Nabız, Tansiyon ve Uyku Özet: Yüksek istirahat nabzı/hipertansiyon uyku kalitesi ve uyku apnesi ile ilişkili olabilir. Dikkat edilecekler - Akşam yüksek nabız: geç kafein, ağır yemek, alkol, yoğun egzersiz, stres. - Kalıcı yüksek tansiyon veya apne belirtileri: tıbbi değerlendirme. Yumuşak adımlar - Akşam sakin nefes/rutin, daha erken hafif akşam yemeği, alkol/kafeini sınırlama. - Düzenli hareket, kilo yönetimi (gerekiyorsa). Kaynak notları Hipertansiyon & uyku ilişkisi, apne literatürü."
+  },
+  {
+    "doc_id": 9,
+    "path": "data\\rag\\sirkadiyen_ritim_program.md",
+    "chunk": "Sirkadiyen Ritim ve Program Özet: Beden saati düzeni sever; sabah ışığı ve düzenli saatler ritmi sabitler. Temeller - Sabit uyanma saati + sabah ışığı + düzenli yemek/aktivite. - Hafta sonu büyük kaymalardan kaçın (sosyal jet lag). Öne alma (faz ilerletme) - Yatışı 15–20 dk aralıklarla öne çek. - Akşam ışığını kıs, ekranı erken bırak, rutini sabit tut. Kaynak notları Kronobiyoloji ve faz ilerletme stratejileri."
+  },
+  {
+    "doc_id": 10,
+    "path": "data\\rag\\stres_kaygi_ve_uyku.md",
+    "chunk": "Stres, Kaygı ve Uyku Özet: Hiperuyanıklık uykusuzluğu besler; bedensel (fizyolojik) ve zihinsel arousal azalınca uyku kolaylaşır. Teknikler - Nefes (4-7-8): 5 dk; nefesi uzatmak parasempatiyi artırır. - Endişe zamanı: Yatmadan önce 10–15 dk plan/ayrıştırma; yatakta zihin jimnastiği yok. - Gevşeme: Artan kas gevşemesi, kısa mindfulness. - İş-uyku arasında tampon yarat (ekran, iş konuşmaları kapalı). 20 dk kuralı Yatakta 20+ dk uyanıksan kalk; loş ışıkta sakin bir etkinlik; uykun gelince dön. Yatak=Uyku koşullu öğrenmesi. Kaynak notları Davranışçı uykusuzluk (CBT-I) ilkeleri, AASM önerileri."
+  },
+  {
+    "doc_id": 11,
+    "path": "data\\rag\\uyku_apnesi_genel_bakis.md",
+    "chunk": "Uyku Apnesi — Genel Bakış Özet: Solunumda duraklamalar uykuyu böler ve oksijen düşüşlerine yol açar; gündüz uykululuk ve horlama sık görülür. Belirtiler & riskler - Yüksek sesli horlama, nefeste duraklama, sabah baş ağrısı. - Risk: Boyun çevresi artışı, erkek cinsiyet, nazal tıkanıklık; her beden tipinde görülebilir. Neden önemli? Kardiyometabolik risk, dikkat/reaksiyon süresinde bozulma. Ne yapmalı? Belirtiler varsa hekimle görüş; evde uyku testi / PSG değerlendirilebilir. Kaynak AASM kamu kaynakları."
+  },
+  {
+    "doc_id": 12,
+    "path": "data\\rag\\uyku_hijyeni_temelleri.md",
+    "chunk": "Uyku Hijyeni — Temeller Özet: Küçük ama istikrarlı alışkanlıklar, uykuya dalma süresini kısaltır ve gece uyanmalarını azaltır. Neden önemli? Beyni ve bedeni “uykuya hazırlanma” moduna almak için düzen, ışık ve uyarılmayı birlikte yönetmek gerekir. Çekirdek alışkanlıklar - Düzenli saat: Hafta sonları dahil sabit uyanma saati (±30 dk). - Rutin (30–60 dk): Işıkları kıs, telefondan uzaklaş, sakin aktiviteler. - Ekran: Yatmadan en az 1 saat önce ekranı bırak; mavi ışığı azalt. - Ortam: Odayı serin (≈18–19°C), karanlık, sessiz tut. Yatak = uyku. - Beslenme: Ağır yemekleri yatmadan 3–4 saat önce bitir; sıvıyı azalt. - Kafein: Yatmadan ≥6 saat önce kes."
+  },
+  {
+    "doc_id": 12,
+    "path": "data\\rag\\uyku_hijyeni_temelleri.md",
+    "chunk": "atak = uyku. - Beslenme: Ağır yemekleri yatmadan 3–4 saat önce bitir; sıvıyı azalt. - Kafein: Yatmadan ≥6 saat önce kes. Alkol uykuyu böler. - Gün ışığı ve hareket: Sabah ışığı + gündüz hareket ritmi sabitler. Örnek akşam akışı - 21:30 — Işıklar kısık, e-posta/soyal medya yok. - 21:40 — 5 dk nefes (4-7-8) + hafif esneme. - 22:00 — Yatak. 20 dk içinde uyku gelmezse yataktan kalk, sakin bir şey yap, uykun gelince dön. Kırmızı bayraklar Şiddetli horlama, nefeste duraklama, boğulur gibi uyanma, >3 ay süren uykusuzluk, aşırı gündüz uykululuk: uzman görüşü. Kaynak notları AASM/NIH hasta bilgilendirme, genel uyku hijyeni rehberleri."
+  },
+  {
+    "doc_id": 13,
+    "path": "data\\rag\\vardiya_ve_jetlag.md",
+    "chunk": "Vardiya ve Jet Lag Özet: Uyumsuz uyku saatleri ve ışık zamanlaması sirkadiyen sistemi zorlar. Vardiya tüyoları - Mümkünse vardiyayı sabit tut; gece vardiyasından dönerken koyu gözlük kullan. - Vardiya başında parlak ışık; gündüz uykusu için odayı karanlık ve sessiz yap. Jet lag tüyoları - Uçuştan 1–3 gün önce programı yöne göre kaydır; doğuya sabah, batıya akşam ışığı (programına göre). - Hekimle görüşerek zamanlı melatonin düşünülebilir. Kaynak Sirkadiyen faz kaydırma stratejileri."
+  },
+  {
+    "doc_id": 14,
+    "path": "data\\rag\\yatak_odasi_ortami.md",
+    "chunk": "Yatak Odası Ortamı Özet: Sıcaklık, ışık, ses ve konfor uyku kalitesini etkiler. Kontrol listesi - Serin (≈18–19°C), karanlık (karartma/maske), sessiz (kulak tıkacı/beyaz gürültü). - Rahat yatak/yastık; görsel dağınıklığı azalt. - Yatak odasına iş/TV sokmamaya çalış. Kaynak notları Çevresel düzen ve uyku üzerine hasta bilgilendirme notları."
+  }
+]

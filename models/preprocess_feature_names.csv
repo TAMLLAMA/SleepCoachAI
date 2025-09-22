@@ -1,0 +1,26 @@
+0
+cat__Gender_Female
+cat__Gender_Male
+cat__BMI Category_Normal
+cat__BMI Category_Normal Weight
+cat__BMI Category_Obese
+cat__BMI Category_Overweight
+cat__Occupation_Accountant
+cat__Occupation_Doctor
+cat__Occupation_Engineer
+cat__Occupation_Lawyer
+cat__Occupation_Nurse
+cat__Occupation_Sales Representative
+cat__Occupation_Salesperson
+cat__Occupation_Scientist
+cat__Occupation_Software Engineer
+cat__Occupation_Teacher
+num__Age
+num__Sleep Duration
+num__Quality of Sleep
+num__Physical Activity Level
+num__Stress Level
+num__Heart Rate
+num__Daily Steps
+num__Systolic
+num__Diastolic

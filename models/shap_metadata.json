@@ -1,0 +1,106 @@
+{
+  "base_value": -0.3826052248477936,
+  "feature_names": [
+    "Gender_Female",
+    "Gender_Male",
+    "BMI Category_Normal",
+    "BMI Category_Normal Weight",
+    "BMI Category_Obese",
+    "BMI Category_Overweight",
+    "Occupation_Accountant",
+    "Occupation_Doctor",
+    "Occupation_Engineer",
+    "Occupation_Lawyer",
+    "Occupation_Nurse",
+    "Occupation_Sales Representative",
+    "Occupation_Salesperson",
+    "Occupation_Scientist",
+    "Occupation_Software Engineer",
+    "Occupation_Teacher",
+    "Age",
+    "Sleep Duration",
+    "Quality of Sleep",
+    "Physical Activity Level",
+    "Stress Level",
+    "Heart Rate",
+    "Daily Steps",
+    "Systolic",
+    "Diastolic"
+  ],
+  "raw_feature_names": [
+    "cat__Gender_Female",
+    "cat__Gender_Male",
+    "cat__BMI Category_Normal",
+    "cat__BMI Category_Normal Weight",
+    "cat__BMI Category_Obese",
+    "cat__BMI Category_Overweight",
+    "cat__Occupation_Accountant",
+    "cat__Occupation_Doctor",
+    "cat__Occupation_Engineer",
+    "cat__Occupation_Lawyer",
+    "cat__Occupation_Nurse",
+    "cat__Occupation_Sales Representative",
+    "cat__Occupation_Salesperson",
+    "cat__Occupation_Scientist",
+    "cat__Occupation_Software Engineer",
+    "cat__Occupation_Teacher",
+    "num__Age",
+    "num__Sleep Duration",
+    "num__Quality of Sleep",
+    "num__Physical Activity Level",
+    "num__Stress Level",
+    "num__Heart Rate",
+    "num__Daily Steps",
+    "num__Systolic",
+    "num__Diastolic"
+  ],
+  "mean_shap_values": [
+    0.1554746925830841,
+    0.004395828582346439,
+    0.7511472105979919,
+    0.0,
+    0.0,
+    0.7586604952812195,
+    0.009168454445898533,
+    0.002840760862454772,
+    0.05098836123943329,
+    0.10317157208919525,
+    0.020120078697800636,
+    0.0,
+    0.08929505944252014,
+    0.0,
+    0.0,
+    0.02525230683386326,
+    0.5180318355560303,
+    0.7569711208343506,
+    0.16640664637088776,
+    0.10714753717184067,
+    0.11797074973583221,
+    0.29935887455940247,
+    0.17184799909591675,
+    1.9045796394348145,
+    0.24880290031433105
+  ],
+  "top_features": [
+    {
+      "name": "Systolic",
+      "importance": 1.9045796394348145
+    },
+    {
+      "name": "BMI Category_Overweight",
+      "importance": 0.7586604952812195
+    },
+    {
+      "name": "Sleep Duration",
+      "importance": 0.7569711208343506
+    },
+    {
+      "name": "BMI Category_Normal",
+      "importance": 0.7511472105979919
+    },
+    {
+      "name": "Age",
+      "importance": 0.5180318355560303
+    }
+  ]
+}

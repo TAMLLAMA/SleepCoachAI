@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SleepCoach.AI — Daha İyi Uykunun Başlangıç Noktası</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="/static/css/chat.css">
+
+  <style>
+    /* =========================
+       Tema değişkenleri
+    ========================== */
+    :root{
+      --card:#ffffff; --text:#1f2937; --muted:#6b7280;
+      --primary:#6c63ff; --primary-2:#8d7bff; --ring:rgba(108,99,255,.35);
+      --hero-img:url("/static/img/hero-night.png");
+    }
+
+    /* =========================
+       Reset / temel
+    ========================== */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+      color:var(--text);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1150px; margin:0 auto; padding:0 20px}
+
+    /* =========================
+       TÜM SAYFA ARKAPLANI
+    ========================== */
+    .page-bg{
+      position:fixed; inset:0; z-index:-1;
+      background-image:
+        linear-gradient(135deg, rgba(108,99,255,.92), rgba(159,139,255,.88) 40%, rgba(201,186,255,.85)),
+        var(--hero-img);
+      background-size:cover; background-position:center; background-repeat:no-repeat;
+      background-attachment:fixed;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================== */
+    .nav{
+      position:sticky; top:0; z-index:1000;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      box-shadow:0 6px 22px rgba(17,24,39,.06);
+    }
+    .nav-inner{
+      display:grid; grid-template-columns:1fr auto 1fr;
+      align-items:center; gap:14px; padding:16px 0;
+    }
+    .brand{font-weight:700}
+    .links{justify-self:center; display:flex; gap:18px; flex-wrap:wrap}
+    .links a{
+      color:#6b7280; font-weight:500; padding:8px 10px; border-radius:10px;
+    }
+    .links a:hover{background:rgba(59,47,224,.06); color:#3b2fe0}
+
+    .actions{justify-self:end; display:flex; gap:10px; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; height:40px;
+      padding:0 16px; border-radius:12px; font-weight:600; border:0; cursor:pointer;
+      transition:transform .16s, box-shadow .16s, background .2s, color .2s;
+    }
+    .btn:active{transform:translateY(1px) scale(.98)}
+    .btn-outline{background:transparent; color:#3b2fe0; border:1px solid rgba(59,47,224,.25)}
+    .btn-outline:hover{background:rgba(59,47,224,.06)}
+    .btn-cta{
+      background:linear-gradient(135deg, var(--primary), var(--primary-2));
+      color:#fff; box-shadow:0 8px 22px rgba(108,99,255,.25);
+    }
+    .btn-cta:hover{box-shadow:0 10px 28px rgba(108,99,255,.33)}
+    .btn .icon{font-size:16px; line-height:1}
+
+    @media (max-width:900px){
+      .nav-inner{grid-template-columns:1fr auto; row-gap:10px}
+      .links{grid-column:1 / -1; justify-self:start}
+      .actions{justify-self:start}
+    }
+
+    /* =========================
+       HERO (gradienti sayfa veriyor)
+    ========================== */
+    .hero{
+      color:#fff; padding:100px 0 72px;
+      background:transparent;
+    }
+    .hero h1{font-size:46px; line-height:1.1; margin:0 0 12px}
+    .hero p{opacity:.95; max-width:780px}
+    .cta{margin-top:22px; display:flex; gap:12px; flex-wrap:wrap}
+    .badges{display:flex; gap:12px; margin-top:16px; flex-wrap:wrap}
+    .badge{background:rgba(255,255,255,.22); padding:6px 10px; border-radius:999px; font-size:13px}
+
+    /* =========================
+       Kartlar / bölümler
+    ========================== */
+    .section{padding:36px 0}
+    .grid{display:grid; gap:18px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){ .grid-3{grid-template-columns:1fr} .hero h1{font-size:36px} }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.62));
+      border:1px solid rgba(0,0,0,.06); border-radius:18px; padding:18px;
+      box-shadow:0 10px 30px rgba(10,16,34,.08);
+      transition:transform .15s, box-shadow .15s, border-color .2s, background .2s;
+    }
+    .card:hover{transform:translateY(-3px); box-shadow:0 14px 40px rgba(10,16,34,.14); border-color:var(--ring)}
+    .card h3{margin:0 0 6px; font-size:18px}
+    .muted{color:#6b7280}
+
+    .step{position:relative}
+    .step::before{content:""; position:absolute; inset:-1px; z-index:-1; border-radius:22px;
+      background:conic-gradient(from 120deg at 50% 50%, var(--ring), transparent 30%); filter:blur(12px); opacity:.25}
+
+    /* =========================
+       CTA Şeridi
+    ========================== */
+    .cta-strip{
+      background:linear-gradient(90deg, rgba(240,245,255,.9), rgba(247,249,255,.9));
+      border:1px solid #e4e9ff; border-radius:20px; padding:18px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px
+    }
+
+    /* =========================
+       Carousel (yorumlar)
+    ========================== */
+    .carousel{display:flex; gap:14px; overflow:auto; scroll-snap-type:x mandatory; padding-bottom:2px}
+    .carousel>.card{min-width:300px; scroll-snap-align:start}
+
+    /* Reveal animasyonu */
+    .reveal{opacity:0; transform:translateY(18px)}
+    .reveal.revealed{opacity:1; transform:translateY(0); transition:opacity .5s, transform .5s}
+
+    /* Footer */
+    .footer{padding:28px 0; color:#eef2ff}
+
+    /* Sonsuz kayan yorum şeridi */
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+/* İsteğe bağlı yumuşak kenar maskesi (açık tema için) */
+/*
+.carousel::before,
+.carousel::after {
+  content: "";
+  position: absolute; top:0; bottom:0; width:56px; pointer-events:none;
+  background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+.carousel::after { right:0; transform: scaleX(-1); }
+.carousel::before { left:0; }
+*/
+
+.carousel__track {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  width: max-content;         /* içerik kadar genişlik */
+  will-change: transform;
+  animation: carousel-marquee var(--marquee-duration, 30s) linear infinite;
+}
+
+.carousel:hover .carousel__track {
+  animation-play-state: paused; /* hover'da durdur */
+}
+
+/* Kartların yatay akışta sabit genişliği olsun */
+.carousel .card {
+  flex: 0 0 auto;
+  min-width: 320px;           /* 240–360 arası zevkine göre */
+}
+
+/* RTL istiyorsan: .carousel[data-dir="rtl"] ekle */
+.carousel[data-dir="rtl"] .carousel__track {
+  animation-direction: reverse;
+}
+
+@keyframes carousel-marquee {
+  to { transform: translateX(-50%); } /* içerik iki kez kopyalanacak */
+}
+
+/* ikon + metin yan yana */
+.brand{
+  display:inline-flex; align-items:center; gap:12px;
+}
+
+/* ikon boyutu ve parıltı */
+.brand-icon{
+  width:28px; height:28px; flex:0 0 auto;
+  filter: drop-shadow(0 2px 8px rgba(79,70,229,.35));
+}
+
+/* gradient yazı; “AI” daha parlak */
+.brand-text{
+  background:linear-gradient(90deg,#4f46e5,#7c66ff,#a78bfa);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-weight:900; letter-spacing:-0.02em;
+  font-size:clamp(22px,2.6vw,30px);
+}
+.brand .ai{
+  background:linear-gradient(90deg,#22d3ee,#a78bfa);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+/* ===== NAV linkleri: animasyon + kayan gösterge ===== */
+.links{
+  position: relative;
+  display: flex; gap: 22px; align-items: center;
+}
+
+.links a{
+  position: relative;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #6b7280;
+  font-weight: 600;
+  transition: color .2s, transform .2s, background .2s;
+}
+
+.links a:hover{
+  color:#3b2fe0;
+  transform: translateY(-1px);
+}
+
+.links a.active{
+  color:#3b2fe0;
+}
+
+/* hover’da yumuşak parıltı */
+.links a::before{
+  content:"";
+  position:absolute; inset:0; border-radius:10px;
+  background: radial-gradient(120% 80% at 50% 120%,
+    rgba(99,102,241,.14), rgba(167,139,250,.12) 40%, transparent);
+  opacity:0; transform: translateY(6px) scale(.95);
+  filter: blur(10px);
+  transition: .25s;
+}
+.links a:hover::before{ opacity:1; transform: translateY(0) scale(1); }
+
+/* alttan kayan gösterge (tek parça) */
+.nav-indicator{
+  position:absolute; bottom:-6px; height:3px;
+  border-radius:999px;
+  background: linear-gradient(90deg,#6366f1,#a78bfa);
+  width:0; transform: translateX(0);
+  box-shadow:0 4px 12px rgba(99,102,241,.35);
+  transition: transform .25s ease, width .25s ease, opacity .2s;
+  opacity:.95;
+}
+
+  </style>
+
+<style id="app-tweaks">
+/* ===== UYGULAMA HİSSİ İÇİN SIKI DÜZEN ===== */
+
+/* Kenar boşluklarını küçült: site daha geniş akacak */
+.container{ max-width:1320px; }
+@media (min-width:1600px){ .container{ max-width:1440px; } }
+
+/* Hero’yu büyüt, daha etkileyici başlık */
+.hero{ padding:120px 0 84px; }
+.hero > .container{ max-width:1400px; }
+.hero h1{
+  font-size:clamp(40px,5vw,64px);
+  font-weight:800;
+  letter-spacing:-0.02em;
+}
+.hero p{ font-size:clamp(16px,1.25vw,20px); }
+
+/* Navbar “app bar” gibi */
+.nav{ border:0; background:rgba(255,255,255,.92); box-shadow:0 8px 30px rgba(17,24,39,.08); }
+.nav-inner{ padding:18px 0; }
+.brand{ font-size:20px; }
+.links a{ font-size:15px; padding:10px 12px; border-radius:12px; }
+.actions .btn{ height:44px; padding:0 18px; border-radius:14px; }
+.actions .btn-cta{ box-shadow:0 10px 28px rgba(108,99,255,.35); }
+
+/* Butonlar ve rozetler */
+.cta .btn{ height:46px; padding:0 18px; border-radius:14px; }
+.badges .badge{ font-size:14px; padding:8px 12px; }
+
+/* Kartlar */
+.section{ padding:48px 0; }
+.grid{ gap:22px; }
+.card{ padding:22px; border-radius:22px; box-shadow:0 12px 28px rgba(10,16,34,.10); }
+.card:hover{ box-shadow:0 16px 40px rgba(10,16,34,.16); }
+
+/* Büyük ekranlarda hero içeriği okuma izi için biraz içe */
+@media (min-width:1200px){
+  .hero > .container{ padding-left:40px; padding-right:40px; }
+}
+
+/* --- Brand: daha geniş & canlı --- */
+.nav-inner{ grid-template-columns: auto 1fr auto; } /* markaya doğal genişlik ver */
+
+.brand{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 14px;
+  border-radius:14px;
+  font-weight:900;
+  font-size:clamp(22px, 2.6vw, 30px); /* büyüt */
+  letter-spacing:-0.02em; line-height:1;
+  background:rgba(255,255,255,.55);                 /* hafif ‘pill’ arkaplan */
+  color:#1f2240;                                    /* fallback renk */
+  box-shadow:0 8px 20px rgba(59,47,224,.14);
+  transition:transform .15s, box-shadow .15s, background .2s;
+}
+
+/* ikon ekle (HTML değiştirmeden) */
+.brand::before{
+  content:"🌙";
+  font-size:1.1em;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.18));
+}
+
+/* gradient yazı (tamamına uygular) */
+.brand{
+  background-image:
+    linear-gradient(90deg,#4f46e5,#7c66ff,#a78bfa);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;                                  /* gradient text */
+}
+
+/* ‘pill’ efekti kalsın ama yazı gradient olsun diye, ayrı bir katman */
+.brand{
+  position:relative;
+}
+.brand::after{
+  content:"";
+  position:absolute; inset:-2px; z-index:-1;
+  border-radius:16px;
+  background:rgba(255,255,255,.55);                   /* pill arka plan */
+  box-shadow:0 8px 24px rgba(17,24,39,.10);
+}
+
+/* hover/press */
+.brand:hover{ transform:translateY(-1px); box-shadow:0 10px 26px rgba(59,47,224,.20); }
+.brand:active{ transform:translateY(0); }
+
+</style>
+
+</head>
+<body>
+  <!-- tüm sayfa arkaplanı -->
+  <div class="page-bg"></div>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Ana gezinme">
+    <div class="container nav-inner">
+      <a class="brand" href="/">
+  <!-- Sol ikon -->
+  <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true">
+    <defs>
+      <!-- mor → lila degrade -->
+      <linearGradient id="scGrad" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#4F46E5"/>
+        <stop offset="1" stop-color="#A78BFA"/>
+      </linearGradient>
+      <!-- hilal maskesi -->
+      <mask id="scCrescentMask">
+        <rect width="32" height="32" fill="black"/>
+        <circle cx="16" cy="16" r="12" fill="white"/>
+        <circle cx="20" cy="12" r="10" fill="black"/>
+      </mask>
+    </defs>
+    <!-- hilal -->
+    <circle cx="16" cy="16" r="12" fill="url(#scGrad)" mask="url(#scCrescentMask)"/>
+    <!-- minik yıldızlar -->
+    <circle cx="24" cy="8" r="1.6" fill="url(#scGrad)"/>
+    <circle cx="9"  cy="10" r="1.1" fill="url(#scGrad)"/>
+    <rect x="24.5" y="18.5" width="3" height="3" transform="rotate(20 26 20)" fill="url(#scGrad)"/>
+  </svg>
+
+  <!-- Metin -->
+  <span class="brand-text">
+    SleepCoach.<span class="ai">AI</span>
+  </span>
+</a>
+
+
+      <div class="links" id="navLinks" role="menubar" aria-label="Sayfa bağlantıları">
+        <a href="#ozellikler" role="menuitem">Özellikler</a>
+        <a href="#nasil" role="menuitem">Nasıl Çalışır</a>
+        <a href="#sss" role="menuitem">SSS</a>
+        <a href="/assistant" role="menuitem">Bilgi Asistanı</a>
+
+
+
+        <span class="nav-indicator" aria-hidden="true"></span>
+      </div>
+
+
+      <div class="actions">
+        <a class="btn btn-outline" href="/">Ana Sayfa</a>
+
+        <a class="btn btn-cta" href="/assessment"><span class="icon">🚀</span>Değerlendirmeyi Başlat</a>
+          <div id="user-slot" class="user-slot">
+          <a class="btn" href="/login">Giriş Yap</a>
+          </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <h1>Uyku sağlığınızı <u>yapay zekâ</u> ile anlayın.</h1>
+      <p>SleepCoach.AI; kişisel verilerinize saygılı, açıklanabilir yapay zekâ destekli bir risk
+        değerlendirmesi ve öneri sistemi sunar. İlk adımı atın, daha dinç uyanın.</p>
+      <div class="cta">
+        <a class="btn btn-cta" href="/assessment"><span class="icon">🌙</span>Hemen Başlayın</a>
+        <a class="btn btn-outline" href="#nasil" aria-label="Nasıl çalıştığını gör">Nasıl Çalışır</a>
+      </div>
+      <div class="badges" aria-label="Güven ve ilke rozetleri">
+        <span class="badge">🔒 KVKK/GDPR Uyumlu</span>
+        <span class="badge">🧠 Explainable AI</span>
+        <span class="badge">📚 RAG Destekli Bilgi Bankası</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NASIL ÇALIŞIR -->
+  <section class="container section" id="nasil">
+    <span class="badge" style="background:rgba(255,255,255,.35)">Süreç</span>
+    <h2 style="margin:10px 0 14px; color:#fff">Nasıl Çalışır?</h2>
+    <div class="grid grid-3" role="list">
+      <div class="card step reveal" role="listitem">
+        <h3>1. Kısa Profil</h3>
+        <p class="muted">Yaş, uyku süresi ve alışkanlıklar gibi temel bilgiler.</p>
+      </div>
+      <div class="card step reveal" role="listitem">
+        <h3>2. Analiz & Açıklama</h3>
+        <p class="muted">Risk puanı + ↑/↓ faktörler ve görsel özet.</p>
+      </div>
+      <div class="card step reveal" role="listitem">
+        <h3>3. Eylem Planı</h3>
+        <p class="muted">Bilimsel temelli mini adımlar ve izleme.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Şerit -->
+  <section class="container section">
+    <div class="cta-strip reveal">
+      <div>
+        <h3 style="margin:0 0 6px">Daha iyi uykulara bugün başlayın</h3>
+        <div class="muted">Analiz ~45 sn sürer. Verileriniz güvende.</div>
+      </div>
+      <a class="btn btn-cta" href="/assessment"><span class="icon">🚀</span>Değerlendirmeyi Başlat</a>
+      <a class="btn btn-ghost" href="/dashboard">Hesabım</a>
+
+    </div>
+  </section>
+
+  <!-- Yorumlar -->
+  <section class="container section" aria-label="Kullanıcı yorumları">
+    <h2 style="color:#fff">Gerçek Kullanıcı Deneyimleri</h2>
+    <div class="carousel">
+      <div class="card"><strong>“Önerilerle 2 haftada toparladım.”</strong><p class="muted">— Selin, 27</p></div>
+      <div class="card"><strong>“Stres rutinleri çok işime yaradı.”</strong><p class="muted">— Emre, 34</p></div>
+      <div class="card"><strong>“RAG kısmı kafein soruma net yanıt verdi.”</strong><p class="muted">— Ayşe, 22</p></div>
+    </div>
+  </section>
+
+  <!-- SSS -->
+  <section class="container section" id="sss" aria-label="Sık sorulan sorular">
+    <h2 style="color:#fff">SSS</h2>
+    <details class="card"><summary><strong>Verilerim nerede saklanıyor?</strong></summary>
+      <p class="muted">Yerel veritabanında ve yalnızca değerlendirme amacıyla. İstediğinizde silebilirsiniz.</p>
+    </details>
+    <details class="card" style="margin-top:10px"><summary><strong>Model kararlarını nasıl açıklıyorsunuz?</strong></summary>
+      <p class="muted">Açıklanabilirlik bileşeni; her faktörün puana katkısını görsel olarak sunar.</p>
+    </details>
+    <details class="card" style="margin-top:10px"><summary><strong>Bu bir tıbbi tanı mıdır?</strong></summary>
+      <p class="muted">Hayır. Klinik teşhis değildir; eğitim amaçlı risk tarama ve öneri sunar.</p>
+    </details>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">© 2025 SleepCoach.AI · Gizlilik · İletişim</div>
+  </footer>
+  <script src="/static/js/ticker.js"></script>
+  <script src="/static/js/user-menu.js"></script>
+
+  <script>
+    // scroll reveal
+    const io = new IntersectionObserver(es=>es.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); }
+    }), {threshold:.14});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ e.preventDefault(); document.querySelector(id)?.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+<div id="sc-chat-root"></div>
+  <script>window.API_BASE = "http://localhost:8000";</script>
+  <script src="/static/js/chat.js"></script>
+
+  <!-- diğer scriptlerin (ticker.js, chat.js vs.) ALTINA -->
+  <script>
+    (function(){
+    const wrap = document.getElementById('navLinks');
+    if(!wrap) return;
+    const links = Array.from(wrap.querySelectorAll('a[href^="#"]'));
+    const ind = wrap.querySelector('.nav-indicator');
+
+    function moveTo(el){
+      const r = el.getBoundingClientRect();
+      const wr = wrap.getBoundingClientRect();
+      ind.style.width = r.width+'px';
+      ind.style.transform = `translateX(${r.left - wr.left + wrap.scrollLeft}px)`;
+    }
+
+    // başlangıç — hash varsa onu, yoksa ilk linki aktif yap
+    let current = links.find(a => a.getAttribute('href') === location.hash) || links[0];
+    current.classList.add('active');
+    moveTo(current);
+
+    // hover/focus/click
+    links.forEach(a=>{
+      a.addEventListener('mouseenter', ()=>moveTo(a));
+      a.addEventListener('focus', ()=>moveTo(a));
+      a.addEventListener('click', ()=>{
+        links.forEach(x=>x.classList.remove('active'));
+        a.classList.add('active');
+        moveTo(a);
+      });
+    });
+    wrap.addEventListener('mouseleave', ()=>moveTo(wrap.querySelector('a.active') || links[0]));
+    window.addEventListener('resize', ()=>moveTo(wrap.querySelector('a.active') || links[0]));
+
+    // scroll-spy: ekranda hangi bölüm varsa onu aktif yap
+    const map = {};
+    links.forEach(a=>{ map[a.getAttribute('href')] = a; });
+
+    const io = new IntersectionObserver((entries)=>{
+      // en görünür olanı seç
+      let best=null, max=0;
+      entries.forEach(e=>{
+        if(e.intersectionRatio > max){ max=e.intersectionRatio; best=e; }
+      });
+      if(best){
+        const id = '#'+best.target.id;
+        const link = map[id];
+        if(link){
+          links.forEach(x=>x.classList.remove('active'));
+          link.classList.add('active');
+          moveTo(link);
+        }
+      }
+    }, {rootMargin:'-35% 0px -55% 0px', threshold:[0,.25,.5,.75,1]});
+
+    ['ozellikler','nasil','sss'].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) io.observe(el);
+    });
+  })();
+  </script>
+</body>
+
+</html>
